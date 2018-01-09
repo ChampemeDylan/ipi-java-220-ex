@@ -1,5 +1,6 @@
 package com.ipiecoles.java.java220;
 
+import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
 // Exercice 4.1
@@ -7,7 +8,10 @@ public class Technicien extends Employe {
 
     @Override
     public Double getPrimeAnnuelle() {
-        return null;
+        Double primeAnnuelleBase = Entreprise.primeAnnuelleBase();
+        Double primeGrade = primeAnnuelleBase * (1 + grade * 0.1);
+        Double primeAnciennete = Entreprise.PRIME_ANCIENNETE + this.getNombreAnneeAnciennete();
+        return primeAnnuelleBase + primeGrade + primeAnciennete;
     }
 
     public Technicien(){
@@ -45,9 +49,20 @@ public class Technicien extends Employe {
     }
 
     // Exercice 4.5
+    @Override
     public void setSalaire(Double salaire) {
         super.setSalaire(salaire * (1 + grade / 10.0));
     }
+    public Integer gerGrade() {
+        return grade;
+    }
 
     // Exercice 4.6
+    @Override
+    public Integer getNbConges() {
+        return super.getNbConges() + this.getNombreAnneeAnciennete();
+    }
+
+    // Exercice 4.7
+
 }
