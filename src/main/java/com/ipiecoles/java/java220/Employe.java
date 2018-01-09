@@ -11,16 +11,16 @@ import java.util.Date;
  * Edited by dchampeme on 08/01/18
  */
 
-public abstract class Employe {
+public class Employe {
     private String nom;
     private String prenom;
     private String matricule;
     private LocalDate dateEmbauche ;
     private Double salaire;
 
-    public void getPrimeAnnuelle(){
+    //public void getPrimeAnnuelle(){
         
-    }
+    //}
 
     public Employe(){
 
