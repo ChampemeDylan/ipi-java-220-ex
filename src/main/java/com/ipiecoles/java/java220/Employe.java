@@ -1,26 +1,28 @@
 package com.ipiecoles.java.java220;
 
-import org.joda.time.DateTime;
-import org.joda.time.DateTimeComparator;
 import org.joda.time.LocalDate;
 
-import java.util.Date;
+import java.util.Objects;
 
 /**
  * Created by pjvilloud on 21/09/17.
  * Edited by dchampeme on 08/01/18
  */
 
-public class Employe {
+public abstract class Employe {
+
+
+    //public void getPrimeAnnuelle(){
+        
+    //}
+
+    public abstract Double getPrimeAnnuelle();
+
     private String nom;
     private String prenom;
     private String matricule;
     private LocalDate dateEmbauche ;
     private Double salaire;
-
-    //public void getPrimeAnnuelle(){
-        
-    //}
 
     public Employe(){
 
@@ -33,15 +35,6 @@ public class Employe {
         this.matricule = matricule;
         this.dateEmbauche = dateEmbauche;
         this.salaire = salaire;
-    }
-
-    // Employe{nom='nom', prenom='prenom', matricule='12345', dateEmbauche=1970-01-01, salaire=500.0}
-    public String toString() {
-        return "Employe{" +
-                "nom='" + nom + "', prenom='" + prenom +
-                "', matricule='" + "null" + "', " +
-                "dateEmbauche=" + "1970-01-01" + ", salaire=" + "500.0" +
-                '}';
     }
 
     // Exercice 11
@@ -66,6 +59,7 @@ public class Employe {
     public void setMatricule(String matricule) {
         this.matricule = matricule;
     }
+
     public String getMatricule() {
         return matricule;
     }
@@ -76,6 +70,7 @@ public class Employe {
         }
         this.dateEmbauche = dateEmbauche;
     }
+
     public LocalDate getDateEmbauche() {
         return dateEmbauche;
     }
@@ -86,13 +81,38 @@ public class Employe {
     }
 
     public void setSalaire(Double salaire) {
+        
         this.salaire = salaire;
     }
+
     public Double getSalaire() {
         return salaire;
     }
 
     public final Integer getNombreAnneeAnciennete() {
         return LocalDate.now().getYear() - dateEmbauche.getYear();
+    }
+
+    @Override
+    public String toString () {
+        return "Employe{nom='"+nom+"', prenom='"+prenom+"', matricule='"+matricule+"', dateEmbauche="+dateEmbauche+", salaire="+salaire+"}";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employe employe = (Employe) o;
+        return Objects.equals(nom, employe.nom) &&
+                Objects.equals(prenom, employe.prenom) &&
+                Objects.equals(matricule, employe.matricule) &&
+                Objects.equals(dateEmbauche, employe.dateEmbauche) &&
+                Objects.equals(salaire, employe.salaire);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(nom, prenom, matricule, dateEmbauche, salaire);
     }
 }
